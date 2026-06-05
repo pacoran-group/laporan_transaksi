@@ -503,6 +503,16 @@ body {
   .chart-title { font-size: 1rem; }
   .dashboard-section h3 { font-size: 1rem; margin-bottom: 8px !important; }
   
+  .data-table th, .data-table td {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+  
+  .badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+  
   .chart-container {
     padding: 16px;
     width: 100%;
