@@ -1,5 +1,10 @@
 import Chart from 'chart.js/auto';
 
+const isMobile = window.innerWidth <= 768;
+Chart.defaults.font.size = isMobile ? 10 : 12;
+Chart.defaults.plugins.legend.labels.boxWidth = isMobile ? 12 : 40;
+Chart.defaults.plugins.legend.labels.padding = isMobile ? 8 : 10;
+
 let charts = {};
 
 export function formatCurrency(value) {
@@ -66,6 +71,10 @@ export function renderRevenueOverlayChart(aggregatedData) {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
+        legend: {
+          position: isMobile ? 'bottom' : 'top',
+          labels: { font: { size: isMobile ? 9 : 12 } }
+        },
         annotation: {
           annotations: {
             line1: {
@@ -80,7 +89,8 @@ export function renderRevenueOverlayChart(aggregatedData) {
         }
       },
       scales: {
-        y: { ticks: { callback: (val) => 'Rp ' + (val/1000000).toFixed(0) + 'M' } }
+        x: { ticks: { maxRotation: 45, minRotation: 45, font: { size: isMobile ? 9 : 11 } } },
+        y: { ticks: { font: { size: isMobile ? 9 : 11 }, callback: (val) => 'Rp ' + (val/1000000).toFixed(0) + 'M' } }
       }
     }
   });
@@ -197,9 +207,13 @@ export function renderMonthlyGrowthChart(aggregatedData) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      plugins: {
+        legend: { position: isMobile ? 'bottom' : 'top', labels: { font: { size: isMobile ? 9 : 12 } } }
+      },
       scales: {
-        'y-trx': { type: 'linear', position: 'left', title: { display: true, text: 'Jumlah Transaksi' } },
-        'y-rev': { type: 'linear', position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: (val) => 'Rp ' + (val/1000000).toFixed(0) + 'M' } }
+        x: { ticks: { maxRotation: 45, minRotation: 45, font: { size: isMobile ? 9 : 11 } } },
+        'y-trx': { type: 'linear', position: 'left', title: { display: !isMobile, text: 'Jumlah Transaksi' }, ticks: { font: { size: isMobile ? 9 : 11 } } },
+        'y-rev': { type: 'linear', position: 'right', grid: { drawOnChartArea: false }, ticks: { font: { size: isMobile ? 9 : 11 }, callback: (val) => 'Rp ' + (val/1000000).toFixed(0) + 'M' } }
       }
     }
   });

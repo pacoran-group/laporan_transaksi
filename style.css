@@ -42,6 +42,7 @@ body {
   line-height: 1.5;
   display: flex;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Layout */
@@ -62,6 +63,7 @@ body {
   margin-left: 280px;
   padding: 32px 40px;
   max-width: calc(100vw - 280px);
+  overflow-x: hidden;
 }
 
 /* Sidebar Elements */
@@ -493,10 +495,29 @@ body {
   .grid-3-col { grid-template-columns: 1fr; }
   .kpi-grid { grid-template-columns: 1fr; }
 
-  .page-title { font-size: 1.5rem; }
+  .page-title { font-size: 1.25rem; }
+  .kpi-value { font-size: 1.5rem; }
+  .chart-title { font-size: 1rem; }
   
+  .chart-container {
+    padding: 16px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
   .table-container {
     -webkit-overflow-scrolling: touch;
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .chart-wrapper {
+    height: 300px;
+  }
+  
+  .heatmap-container {
+    padding-bottom: 8px;
   }
 }
 
