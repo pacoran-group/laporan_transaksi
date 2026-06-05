@@ -495,9 +495,13 @@ body {
   .grid-3-col { grid-template-columns: 1fr; }
   .kpi-grid { grid-template-columns: 1fr; }
 
-  .page-title { font-size: 1.25rem; }
-  .kpi-value { font-size: 1.5rem; }
+  .page-title { font-size: 1.125rem; }
+  .page-subtitle { font-size: 0.85rem; }
+  .kpi-value { font-size: 1.125rem; margin-bottom: 4px; }
+  .kpi-title { font-size: 0.75rem; margin-bottom: 4px; }
+  .kpi-card { padding: 16px; }
   .chart-title { font-size: 1rem; }
+  .dashboard-section h3 { font-size: 1rem; margin-bottom: 8px !important; }
   
   .chart-container {
     padding: 16px;
