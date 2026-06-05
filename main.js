@@ -19,6 +19,7 @@ async function init() {
     setupNavigation();
     setupFilters();
     setupExport();
+    setupMobileMenu();
     
   } catch (error) {
     console.error("Initialization failed:", error);
@@ -87,6 +88,8 @@ function processDashboard() {
 function setupNavigation() {
   const navItems = document.querySelectorAll('.nav-item');
   const sections = document.querySelectorAll('.dashboard-section');
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
   
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -100,6 +103,12 @@ function setupNavigation() {
         if (sec.id === targetId) sec.classList.add('active');
         else sec.classList.remove('active');
       });
+
+      // Close sidebar on mobile
+      if (window.innerWidth <= 768 && sidebar && overlay) {
+        sidebar.classList.remove('show-sidebar');
+        overlay.classList.remove('active');
+      }
     });
   });
 }
@@ -128,6 +137,24 @@ function setupExport() {
     
     btn.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> Export Laporan PDF';
   });
+}
+
+function setupMobileMenu() {
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+
+  if (toggleBtn && sidebar && overlay) {
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('show-sidebar');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('show-sidebar');
+      overlay.classList.remove('active');
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init);
